@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="13F1112" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ABCourse" representedClassName="ABCourse" syncable="YES">
+        <attribute name="branch" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="courseName" optional="YES" attributeType="String" minValueString="3" regularExpressionString="[A-Za-z0-9#-+ ]*." syncable="YES"/>
+        <attribute name="subject" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="students" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ABStudent" inverseName="courses" inverseEntity="ABStudent" syncable="YES"/>
+        <relationship name="teacher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ABTeacher" inverseName="courses" inverseEntity="ABTeacher" syncable="YES"/>
+    </entity>
+    <entity name="ABStudent" representedClassName="ABStudent" syncable="YES">
+        <attribute name="eMail" optional="YES" attributeType="String" minValueString="7" regularExpressionString="[A-Za-z0-9@._-]*." syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" minValueString="2" regularExpressionString="[A-Za-z]*." syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" minValueString="2" regularExpressionString="[A-Za-z]*." syncable="YES"/>
+        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ABCourse" inverseName="students" inverseEntity="ABCourse" syncable="YES"/>
+    </entity>
+    <entity name="ABTeacher" representedClassName="ABTeacher" syncable="YES">
+        <attribute name="firstName" optional="YES" attributeType="String" minValueString="3" regularExpressionString="[A-Za-z]*." syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" minValueString="3" regularExpressionString="[A-Za-z]*." syncable="YES"/>
+        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ABCourse" inverseName="teacher" inverseEntity="ABCourse" syncable="YES"/>
+    </entity>
+    <fetchRequest name="FetchStudenstsCourse" entity="ABCourse" predicateString="courseName CONTAINS &quot;students&quot;"/>
+    <elements>
+        <element name="ABCourse" positionX="-182" positionY="8" width="128" height="118"/>
+        <element name="ABStudent" positionX="-389" positionY="9" width="128" height="103"/>
+        <element name="ABTeacher" positionX="36" positionY="9" width="128" height="88"/>
+    </elements>
+</model>
